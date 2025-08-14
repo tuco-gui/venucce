@@ -8,116 +8,103 @@
 
   <!-- UTM propagation helper -->
   <script>
-    (function(){
-      var params = new URLSearchParams(window.location.search);
-      window.__utm = params.toString();
-    })();
+    (function(){ var params = new URLSearchParams(location.search); window.__utm = params.toString(); })();
   </script>
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
-    summary::-webkit-details-marker{display:none}
-    /* util extra p/ reforçar borda do chip PRO em telas maiores */
-    @media (min-width: 768px){
-      .chip-pro{ border-width: 4px !important; }
-    }
-    /* animações suaves no hero */
+    /* ====== AJUSTES CRÍTICOS ====== */
+    img, picture, video { background: transparent !important; }
+
+    .chip-pro { border-width: 3px; }
+    @media (min-width: 768px){ .chip-pro { border-width: 4px; } }
+
+    .btn-primary { background:#07d83b; color:#fff; }
+    .btn-primary:hover { filter:brightness(.95); transform:translateY(-1px); }
+
     @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-    .float-slow{ animation: floatY 6s ease-in-out infinite; }
+    .float-slow { animation: floatY 6s ease-in-out infinite; }
+
+    /* Reveal suave para a seção 2 */
+    .reveal { opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity:1; transform:none; }
+
+    details[open] summary .plus { transform: rotate(45deg); }
+    summary::-webkit-details-marker { display: none; }
   </style>
 
-  <!-- Google Tag Manager -->
+  <!-- GTM -->
   <script>
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-XXXXXXX');
   </script>
-  <!-- End GTM -->
 
   <!-- Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-    (window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'XXXXXXXXXXXXXXX'); fbq('track', 'PageView');
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js'); fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
   </script>
-  <noscript>
-    <img height="1" width="1" style="display:none"
-         src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/>
-  </noscript>
-  <!-- End Meta Pixel -->
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
 </head>
 
-<body class="min-h-screen bg-black text-white">
+<body class="min-h-screen bg-black text-white selection:bg-white/20">
   <!-- GTM noscript -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- Top bar -->
-  <header class="fixed top-0 inset-x-0 z-40 border-b border-white/10 bg-black/70 backdrop-blur">
-    <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+  <!-- HEADER -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
       <a href="#hero" class="inline-flex items-center gap-3">
-        <!-- LOGO (apenas a imagem) -->
-        <img src="/img/logovenucce.png?v=2" alt="Venucce" class="h-7 w-auto" />
+        <img src="/img/logovenucce.png?v=4" alt="Venucce" class="h-8 w-auto" loading="eager" decoding="async" />
       </a>
-      <a id="cta-top" href="#wa"
-         class="inline-flex items-center gap-2 rounded-2xl bg-[#07d83b] px-4 py-2 text-white font-semibold hover:scale-[1.02] transition js-wa">
-         Chamar no WhatsApp
-      </a>
+      <a id="cta-top" href="#wa" class="rounded-full px-4 py-2 text-sm font-semibold btn-primary js-wa">Chamar no WhatsApp</a>
     </div>
   </header>
 
-  <!-- Hero -->
-  <section id="hero" class="relative pt-28 pb-16">
-    <div class="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
-      <!-- Texto -->
+  <!-- ===================== HERO (SEÇÃO 1) ===================== -->
+  <section id="hero" class="relative pt-28 pb-14">
+    <div class="relative mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
       <div>
-        <h1 class="text-[44px] leading-[1.05] md:text-6xl font-extrabold tracking-tight">MACBOOK</h1>
+        <h1 class="font-black leading-[1.03] tracking-tight">
+          <span class="block text-[42px] sm:text-[56px] md:text-[68px]">MACBOOK</span>
+          <span class="mt-3 inline-flex items-center px-4 py-1.5 rounded-2xl border border-white/90 chip-pro
+                       text-[30px] sm:text-[44px] md:text-[52px] font-extrabold">
+            PRO
+          </span>
+        </h1>
 
-        <!-- Chip PRO com borda forte -->
-        <div class="mt-4 inline-block rounded-xl chip-pro border-2 px-5 py-2">
-          <span class="text-4xl font-black tracking-widest">PRO</span>
-        </div>
-
-        <p class="mt-6 text-lg text-white/85 max-w-xl">
-          M4, M3 e M2 com superdesconto à vista e parcelamento em até 18x.<br/>
-          Lacrado, original, com nota e garantia.
+        <p class="mt-6 text-white/80 max-w-xl">
+          M4, M3 e M2 com superdesconto à vista e parcelamento em até 18x. Lacrado, original, com nota e garantia.
         </p>
 
-        <!-- CTA único (verde) -->
         <div class="mt-8">
-          <a id="cta-hero" href="#wa"
-             class="rounded-2xl bg-[#07d83b] px-6 py-3 text-white font-semibold hover:scale-[1.02] transition js-wa">
-             COMPRAR AGORA
+          <a id="cta-hero" href="#wa" class="btn-primary rounded-2xl px-7 py-3 text-base font-semibold inline-flex items-center justify-center js-wa">
+            COMPRAR AGORA
           </a>
         </div>
 
-        <!-- Badges -->
-        <div class="mt-6 flex flex-wrap items-center gap-5 text-sm text-white/80">
-          <div class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-green-400"></span> Original Apple
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-green-400"></span> Até 18x
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="h-2 w-2 rounded-full bg-green-400"></span> Entrega 24h (BSB)
-          </div>
+        <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
+          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Original Apple</div>
+          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Até 18x</div>
+          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Entrega 24h (BSB)</div>
         </div>
       </div>
 
-      <!-- Imagem (sem fundo algum por trás) -->
       <div class="flex flex-col items-center">
-        <!-- IMPORTANTE: sem bg-*, sem gradiente, sem borda: só a imagem -->
         <img
-          src="/img/m4-hero.png?v=3"
+          src="/img/m4-hero.png?v=4"
           alt="MacBook Pro M4 — Venucce"
-          class="block w-full h-auto float-slow select-none pointer-events-none"
-          style="background-color: transparent;"
+          class="block w-full h-auto object-contain float-slow select-none pointer-events-none"
+          style="background: transparent;"
+          loading="eager" decoding="async"
         />
         <div class="mt-3 rounded-full bg-yellow-400/10 px-3 py-1 text-yellow-300 text-xs border border-yellow-300/30">
           Oferta válida hoje
@@ -125,90 +112,123 @@
       </div>
     </div>
   </section>
+  <!-- =================== /HERO =================== -->
+
+  <!-- ===================== SEÇÃO 2 — “SEJA LIVRE!” (NOVO) ===================== -->
+  <!-- Duplicando a composição da referência: foto esquerda (full-bleed), texto à direita -->
+  <section id="seja-livre" class="relative py-16 lg:py-24 border-y border-white/10">
+    <div class="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
+      <!-- Coluna da foto: ocupa a coluna inteira na esquerda; usa background para manter a estética -->
+      <div class="relative h-[48vh] sm:h-[56vh] lg:h-[64vh] rounded-3xl overflow-hidden reveal" data-reveal>
+        <div class="absolute inset-0 bg-[url('/img/section2.jpg')] bg-cover bg-center"></div>
+        <!-- vinheta escura para legibilidade -->
+        <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/10"></div>
+      </div>
+
+      <!-- Texto à direita -->
+      <div class="reveal" data-reveal>
+        <h2 class="text-[42px] sm:text-[56px] md:text-[68px] font-black tracking-tight leading-[1.03]">
+          SEJA LIVRE!
+        </h2>
+        <p class="mt-6 text-white/80 text-lg leading-relaxed">
+          Descubra a liberdade de estudar, criar e trabalhar de qualquer lugar com o
+          <span class="text-white font-semibold">MacBook Pro</span>. Desempenho de ponta, bateria de longa duração e a
+          experiência macOS elevam sua produtividade ao próximo nível — sem abrir mão de design, qualidade e
+          durabilidade.
+        </p>
+        <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-7 py-3 text-base font-semibold js-wa" data-product="CTA Seja Livre">
+          COMPRAR AGORA
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- =================== /SEÇÃO 2 =================== -->
+
+  <!-- =================== RESTO DA SUA PÁGINA (mantido) =================== -->
 
   <!-- Modelos disponíveis -->
   <section id="modelos" class="py-16">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Modelos disponíveis</h2>
       <p class="text-white/70 mt-2">Todos novos, lacrados, originais e prontos pra entrega.</p>
-
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <!-- M4 -->
-        <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition text-center">
-          <img src="/img/m4-14.jpg" alt="MacBook Pro M4 14 polegadas"
-               class="rounded-2xl w-full aspect-[4/3] object-cover" />
-          <h3 class="mt-4 text-xl font-semibold">MacBook Pro M4 14"</h3>
+        <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
+          <img src="/img/m4-14.jpg" alt="MacBook Pro M4 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          <h3 class="mt-4 text-xl font-semibold text-center">MacBook Pro M4 14"</h3>
           <ul class="mt-3 text-white/80 space-y-1">
-            <li>18GB</li><li>512GB SSD</li><li>Retina XDR</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> 18GB</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> 512GB SSD</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> Retina XDR</li>
           </ul>
-          <div class="mt-4 text-yellow-300 font-semibold">R$ 4.750 à vista*</div>
-          <div class="mt-1 text-sm text-white/70">Novo, lacrado, nota e garantia</div>
-          <a href="#wa"
-             class="mt-6 inline-flex rounded-xl bg-[#07d83b] px-4 py-2 text-white font-semibold hover:scale-[1.02] transition js-wa"
-             data-product="MacBook Pro M4 14">Chamar no WhatsApp</a>
+          <div class="mt-4 text-green-300 font-semibold text-center">R$ 4.750 à vista*</div>
+          <div class="mt-1 text-sm text-white/70 text-center">Novo, lacrado, nota e garantia</div>
+          <div class="mt-6 flex justify-center">
+            <a href="#wa" class="inline-flex rounded-xl px-5 py-2 font-semibold btn-primary js-wa" data-product="MacBook Pro M4 14">Chamar no WhatsApp</a>
+          </div>
         </article>
-
         <!-- M3 Pro -->
-        <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition text-center">
-          <img src="/img/m3pro-16.jpg" alt="MacBook Pro M3 Pro 16 polegadas"
-               class="rounded-2xl w-full aspect-[4/3] object-cover" />
-          <h3 class="mt-4 text-xl font-semibold">MacBook Pro M3 Pro 16"</h3>
+        <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
+          <img src="/img/m3pro-16.jpg" alt="MacBook Pro M3 Pro 16 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          <h3 class="mt-4 text-xl font-semibold text-center">MacBook Pro M3 Pro 16"</h3>
           <ul class="mt-3 text-white/80 space-y-1">
-            <li>16GB</li><li>1TB SSD</li><li>Retina XDR</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> 16GB</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> 1TB SSD</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> Retina XDR</li>
           </ul>
-          <div class="mt-4 text-yellow-300 font-semibold">Consulte condições</div>
-          <div class="mt-1 text-sm text-white/70">Entrega expressa em Brasília</div>
-          <a href="#wa"
-             class="mt-6 inline-flex rounded-xl bg-[#07d83b] px-4 py-2 text-white font-semibold hover:scale-[1.02] transition js-wa"
-             data-product="MacBook Pro M3 Pro 16">Chamar no WhatsApp</a>
+          <div class="mt-4 text-green-300 font-semibold text-center">Consulte condições</div>
+          <div class="mt-1 text-sm text-white/70 text-center">Entrega expressa em Brasília</div>
+          <div class="mt-6 flex justify-center">
+            <a href="#wa" class="inline-flex rounded-xl px-5 py-2 font-semibold btn-primary js-wa" data-product="MacBook Pro M3 Pro 16">Chamar no WhatsApp</a>
+          </div>
         </article>
-
         <!-- M2 Pro -->
-        <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition text-center">
-          <img src="/img/m2pro-14.jpg" alt="MacBook Pro M2 Pro 14 polegadas"
-               class="rounded-2xl w-full aspect-[4/3] object-cover" />
-          <h3 class="mt-4 text-xl font-semibold">MacBook Pro M2 Pro 14"</h3>
+        <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
+          <img src="/img/m2pro-14.jpg" alt="MacBook Pro M2 Pro 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          <h3 class="mt-4 text-xl font-semibold text-center">MacBook Pro M2 Pro 14"</h3>
           <ul class="mt-3 text-white/80 space-y-1">
-            <li>16GB</li><li>512GB SSD</li><li>Tela Retina</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> 16GB</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> 512GB SSD</li>
+            <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span> Tela Retina</li>
           </ul>
-          <div class="mt-4 text-yellow-300 font-semibold">Consulte condições</div>
-          <div class="mt-1 text-sm text-white/70">Avaliação do seu usado na hora</div>
-          <a href="#wa"
-             class="mt-6 inline-flex rounded-xl bg-[#07d83b] px-4 py-2 text-white font-semibold hover:scale-[1.02] transition js-wa"
-             data-product="MacBook Pro M2 Pro 14">Chamar no WhatsApp</a>
+          <div class="mt-4 text-green-300 font-semibold text-center">Consulte condições</div>
+          <div class="mt-1 text-sm text-white/70 text-center">Avaliação do seu usado na hora</div>
+          <div class="mt-6 flex justify-center">
+            <a href="#wa" class="inline-flex rounded-xl px-5 py-2 font-semibold btn-primary js-wa" data-product="MacBook Pro M2 Pro 14">Chamar no WhatsApp</a>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- Seção com 3 heros (substitui os fones) -->
+  <!-- Seção com 3 heros -->
   <section class="py-14 border-y border-white/10 bg-white/5">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Escolha seu MacBook Pro</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/30">
-          <img src="/img/m4-hero.png?v=3" alt="MacBook Pro M4" class="w-full aspect-[16/10] object-contain bg-transparent"/>
+          <img src="/img/m4-hero.png?v=4" alt="MacBook Pro M4" class="w-full aspect-[16/10] object-contain bg-transparent"/>
           <figcaption class="p-4 flex items-center justify-center">
-            <a href="#wa" class="rounded-xl bg-[#07d83b] px-4 py-2 text-white font-semibold js-wa" data-product="MacBook Pro M4">WhatsApp</a>
+            <a href="#wa" class="rounded-xl btn-primary px-4 py-2 font-semibold js-wa" data-product="MacBook Pro M4">WhatsApp</a>
           </figcaption>
         </figure>
         <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/30">
           <img src="/img/m3-hero.jpg" alt="MacBook Pro M3" class="w-full aspect-[16/10] object-cover"/>
           <figcaption class="p-4 flex items-center justify-center">
-            <a href="#wa" class="rounded-xl bg-[#07d83b] px-4 py-2 text-white font-semibold js-wa" data-product="MacBook Pro M3">WhatsApp</a>
+            <a href="#wa" class="rounded-xl btn-primary px-4 py-2 font-semibold js-wa" data-product="MacBook Pro M3">WhatsApp</a>
           </figcaption>
         </figure>
         <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/30">
           <img src="/img/m2-hero.jpg" alt="MacBook Pro M2" class="w-full aspect-[16/10] object-cover"/>
           <figcaption class="p-4 flex items-center justify-center">
-            <a href="#wa" class="rounded-xl bg-[#07d83b] px-4 py-2 text-white font-semibold js-wa" data-product="MacBook Pro M2">WhatsApp</a>
+            <a href="#wa" class="rounded-xl btn-primary px-4 py-2 font-semibold js-wa" data-product="MacBook Pro M2">WhatsApp</a>
           </figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-  <!-- Por que / Sobre -->
+  <!-- Por que Venucce -->
   <section class="py-16">
     <div class="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
       <div>
@@ -220,16 +240,11 @@
           <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-[#07d83b]"></span><span class="text-white/85">Transparência total no pagamento (até 18x no cartão)</span></li>
           <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-[#07d83b]"></span><span class="text-white/85">Brinde pra quem fechar hoje</span></li>
         </ul>
-        <a href="#wa" class="mt-8 inline-flex rounded-2xl bg-[#07d83b] px-6 py-3 text-white font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA Por que Venucce">Falar com um especialista</a>
+        <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-6 py-3 font-semibold js-wa" data-product="CTA Por que Venucce">Falar com um especialista</a>
       </div>
       <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
         <h3 class="text-xl font-semibold">Sobre a Venucce</h3>
-        <p class="mt-3 text-white/80">
-          Loja especializada em Apple em Brasília/DF. Inside Sales com foco em WhatsApp e experiência premium.
-          Estoque selecionado de MacBooks e iPads, priorizando modelos com maior margem para oferecer
-          <span class="text-white">preços competitivos</span> e <span class="text-white">condições flexíveis</span>. Entrega expressa em Brasília e retirada em loja física.
-          Transparência total e <span class="text-white">avaliação do seu usado como entrada</span>.
-        </p>
+        <p class="mt-3 text-white/80">Loja especializada em Apple em Brasília/DF. Inside Sales com foco em WhatsApp e experiência premium. Estoque selecionado de MacBooks e iPads, priorizando modelos com maior margem para oferecer <span class="text-white">preços competitivos</span> e <span class="text-white">condições flexíveis</span>. Entrega expressa em Brasília e retirada em loja física. Transparência total e <span class="text-white">avaliação do seu usado como entrada</span>.</p>
       </div>
     </div>
   </section>
@@ -239,26 +254,14 @@
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Como funciona</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <div class="rounded-3xl border border-white/10 p-6 text-center">
-          <div class="text-4xl font-black text-[#07d83b]">1</div>
-          <h4 class="mt-2 text-xl font-semibold">Escolha o modelo</h4>
-          <p class="mt-1 text-white/80">Defina entre M2, M3 ou M4 e a configuração ideal.</p>
-        </div>
-        <div class="rounded-3xl border border-white/10 p-6 text-center">
-          <div class="text-4xl font-black text-[#07d83b]">2</div>
-          <h4 class="mt-2 text-xl font-semibold">Fale no WhatsApp</h4>
-          <p class="mt-1 text-white/80">Atendimento consultivo e resposta rápida.</p>
-        </div>
-        <div class="rounded-3xl border border-white/10 p-6 text-center">
-          <div class="text-4xl font-black text-[#07d83b]">3</div>
-          <h4 class="mt-2 text-xl font-semibold">Receba ou retire</h4>
-          <p class="mt-1 text-white/80">Entrega expressa em Brasília ou retirada na loja.</p>
-        </div>
+        <div class="rounded-3xl border border-white/10 p-6 text-center"><div class="text-4xl font-black text-[#07d83b]">1</div><h4 class="mt-2 text-xl font-semibold">Escolha o modelo</h4><p class="mt-1 text-white/80">Defina entre M2, M3 ou M4 e a configuração ideal.</p></div>
+        <div class="rounded-3xl border border-white/10 p-6 text-center"><div class="text-4xl font-black text-[#07d83b]">2</div><h4 class="mt-2 text-xl font-semibold">Fale no WhatsApp</h4><p class="mt-1 text-white/80">Atendimento consultivo e resposta rápida.</p></div>
+        <div class="rounded-3xl border border-white/10 p-6 text-center"><div class="text-4xl font-black text-[#07d83b]">3</div><h4 class="mt-2 text-xl font-semibold">Receba ou retire</h4><p class="mt-1 text-white/80">Entrega expressa em Brasília ou retirada na loja.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Prova social (vídeos) -->
+  <!-- Prova social -->
   <section id="prova-social" class="py-16">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Clientes satisfeitos</h2>
@@ -266,33 +269,24 @@
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
           <div class="aspect-video bg-black/60">
-            <video controls preload="metadata" class="w-full h-full">
-              <source src="/videos/depo1.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeo HTML5.
-            </video>
+            <video controls preload="metadata" class="w-full h-full"><source src="/videos/depo1.mp4" type="video/mp4" />Seu navegador não suporta vídeo HTML5.</video>
           </div>
           <div class="p-4"><div class="text-sm text-white/70">Natália – Águas Claras</div><div class="text-white mt-1">“Fechei o MacBook M3 em 18x. Atendimento incrível!”</div></div>
         </div>
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
           <div class="aspect-video bg-black/60">
-            <video controls preload="metadata" class="w-full h-full">
-              <source src="/videos/depo2.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeo HTML5.
-            </video>
+            <video controls preload="metadata" class="w-full h-full"><source src="/videos/depo2.mp4" type="video/mp4" />Seu navegador não suporta vídeo HTML5.</video>
           </div>
           <div class="p-4"><div class="text-sm text-white/70">Carlos – Brasília</div><div class="text-white mt-1">“Produto original, entrega rápida e preço justo.”</div></div>
         </div>
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
           <div class="aspect-video bg-black/60">
-            <video controls preload="metadata" class="w-full h-full">
-              <source src="/videos/depo3.mp4" type="video/mp4" />
-              Seu navegador não suporta vídeo HTML5.
-            </video>
+            <video controls preload="metadata" class="w-full h-full"><source src="/videos/depo3.mp4" type="video/mp4" />Seu navegador não suporta vídeo HTML5.</video>
           </div>
           <div class="p-4"><div class="text-sm text-white/70">Victor – Lago Norte</div><div class="text-white mt-1">“Atendimento consultivo e transparente. Recomendo!”</div></div>
         </div>
       </div>
-      <a href="#wa" class="mt-8 inline-flex rounded-2xl bg-[#07d83b] px-6 py-3 text-white font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA Prova Social">Tirar dúvidas no WhatsApp</a>
+      <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-6 py-3 font-semibold js-wa" data-product="CTA Prova Social">Tirar dúvidas no WhatsApp</a>
     </div>
   </section>
 
@@ -302,23 +296,23 @@
       <h2 class="text-3xl font-bold">FAQ</h2>
       <p class="text-white/70 mt-2">Clique para revelar as respostas.</p>
       <div class="mt-8 divide-y divide-white/10 rounded-3xl border border-white/10 overflow-hidden">
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Os produtos são originais?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim. Todos são Apple originais, lacrados, com nota fiscal e garantia.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Vocês emitem nota fiscal?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, emitimos NF-e em todas as compras (PF e PJ).</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Tem garantia?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Garantia Apple conforme o modelo, além das garantias legais vigentes.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Posso parcelar?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Até 18x no cartão, sujeito a condições da adquirente.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Avaliam usado como entrada?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, avaliamos seu dispositivo no ato para usar como parte do pagamento.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Entregam em Brasília?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Entrega expressa em até 24h para Brasília/DF e entorno elegível.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Posso retirar na loja?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, temos loja física em Brasília para retirada e suporte.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Tem desconto à vista?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Modelos selecionados possuem superdesconto para pagamento à vista.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Emitimos para CNPJ?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, emitimos NF-e para PF e PJ. Alinhe os dados no WhatsApp.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Ajudam a escolher o melhor modelo?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Claro! Atendimento consultivo conforme seu uso (faculdade, edição, dev etc.).</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Entregam para outras cidades?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Consulte nossa equipe para condições e prazos fora de Brasília.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Os preços mudam?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Podem variar conforme disponibilidade e câmbio. Confirme no WhatsApp.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Tem brinde?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim. Clientes que fecharem hoje recebem brinde (ex.: Office, película, conforme campanha).</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Vocês configuram o Mac?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Podemos auxiliar na configuração inicial básica. Consulte no atendimento.</div></details>
-        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Como falo com suporte?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Atendimento via WhatsApp e na loja física, dentro do horário comercial.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Os produtos são originais?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim. Todos são Apple originais, lacrados, com nota fiscal e garantia.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Vocês emitem nota fiscal?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, emitimos NF-e em todas as compras (PF e PJ).</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Tem garantia?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Garantia Apple conforme o modelo, além das garantias legais vigentes.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Posso parcelar?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Até 18x no cartão, sujeito a condições da adquirente.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Avaliam usado como entrada?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, avaliamos seu dispositivo no ato para usar como parte do pagamento.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Entregam em Brasília?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Entrega expressa em até 24h para Brasília/DF e entorno elegível.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Posso retirar na loja?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, temos loja física em Brasília para retirada e suporte.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Tem desconto à vista?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Modelos selecionados possuem superdesconto para pagamento à vista.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Emitimos para CNPJ?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, emitimos NF-e para PF e PJ. Alinhe os dados no WhatsApp.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Ajudam a escolher o melhor modelo?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Claro! Atendimento consultivo conforme seu uso (faculdade, edição, dev etc.).</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Entregam para outras cidades?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Consulte nossa equipe para condições e prazos fora de Brasília.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Os preços mudam?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Podem variar conforme disponibilidade e câmbio. Confirme no WhatsApp.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Tem brinde?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim. Clientes que fecharem hoje recebem brinde (ex.: Office, película, conforme campanha).</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Vocês configuram o Mac?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Podemos auxiliar na configuração inicial básica. Consulte no atendimento.</div></details>
+        <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Como falo com suporte?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Atendimento via WhatsApp e na loja física, dentro do horário comercial.</div></details>
       </div>
-      <a href="#wa" class="mt-8 inline-flex rounded-2xl bg-[#07d83b] px-6 py-3 text-white font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA FAQ">Falar com atendimento</a>
+      <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-6 py-3 font-semibold js-wa" data-product="CTA FAQ">Falar com atendimento</a>
     </div>
   </section>
 
@@ -327,82 +321,55 @@
     <div class="mx-auto max-w-6xl px-4 text-center">
       <h2 class="text-3xl md:text-4xl font-bold">Original, garantido e com o melhor valor de Brasília.</h2>
       <p class="text-white/80 mt-3">Brinde exclusivo pra quem fechar hoje. Estoque limitado.</p>
-      <a id="cta-final" href="#wa" class="mt-6 inline-flex rounded-2xl bg-[#07d83b] px-8 py-4 text-white text-lg font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA Final">CHAMAR NO WHATSAPP AGORA</a>
+      <a id="cta-final" href="#wa" class="mt-6 inline-flex rounded-2xl btn-primary px-8 py-4 text-lg font-semibold js-wa" data-product="CTA Final">CHAMAR NO WHATSAPP AGORA</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="py-10 border-t border-white/10 text-white/60">
     <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-      <img src="/img/logovenucce.png?v=2" alt="Venucce" class="h-7 w-auto" />
+      <img src="/img/logovenucce.png?v=4" alt="Venucce" class="h-7 w-auto" />
       <div class="text-sm">© <span id="year"></span> Venucce • Brasília/DF • Atendimento via WhatsApp</div>
     </div>
   </footer>
 
   <!-- Floating WhatsApp -->
-  <a id="wa" href="#" class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 text-white font-semibold shadow-lg hover:scale-[1.03] transition js-wa" data-product="CTA Flutuante">WhatsApp</a>
+  <a id="wa" href="#" class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full btn-primary px-5 py-3 font-semibold shadow-lg hover:scale-[1.03] transition js-wa" data-product="CTA Flutuante">WhatsApp</a>
 
-  <!-- Scripts (WA + UTM + eventos) -->
+  <!-- Scripts: WA + eventos + utilitários -->
   <script>
     (function(){
-      var YEAR = document.getElementById('year'); if (YEAR) YEAR.textContent = new Date().getFullYear();
-
-      // Número do WhatsApp
-      var WHATSAPP_NUMBER = '5561999999999'; // <-- TROCAR
-      var BASE_WA = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Olá, quero informações sobre o MacBook Pro (M2/M3/M4). Vim pela Landing Page.');
-      function buildWaLink(extra){
-        var url = BASE_WA;
-        if (extra) url += encodeURIComponent(' | ' + extra);
-        if (window.__utm) url += '%0A%0AUTM=' + encodeURIComponent(window.__utm);
-        return url;
-      }
-
-      function bindWA(){
-        document.querySelectorAll('.js-wa').forEach(function(btn){
-          var product = btn.getAttribute('data-product') || 'generic';
-          var href = buildWaLink(product);
-          btn.setAttribute('href', href);
-          btn.addEventListener('click', function(){
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              event: 'whatsapp_click',
-              product: product,
-              position_id: btn.id || 'no-id',
-              utm: window.__utm || ''
-            });
-            if (window.fbq) fbq('track', 'Contact', {content_name: product});
-          });
+      var YEAR=document.getElementById('year'); if(YEAR) YEAR.textContent=new Date().getFullYear();
+      var WHATSAPP_NUMBER='5561999999999'; // <-- TROCAR
+      var BASE_WA='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent('Olá, quero informações sobre o MacBook Pro (M2/M3/M4). Vim pela Landing Page.');
+      function buildWaLink(extra){ var url=BASE_WA; if(extra) url+=encodeURIComponent(' | '+extra); if(window.__utm) url+='%0A%0AUTM='+encodeURIComponent(window.__utm); return url; }
+      document.querySelectorAll('.js-wa').forEach(function(btn){
+        var product=btn.getAttribute('data-product')||'generic';
+        btn.setAttribute('href', buildWaLink(product));
+        btn.addEventListener('click', function(){
+          window.dataLayer=window.dataLayer||[];
+          window.dataLayer.push({event:'whatsapp_click',product:product,position_id:btn.id||'no-id',utm:window.__utm||''});
+          if(window.fbq) fbq('track','Contact',{content_name:product});
         });
-      }
-      bindWA();
-
-      // Observer de seções
-      var obs = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if(e.isIntersecting){
-            var id = e.target.id || e.target.getAttribute('data-section');
-            if (!id) return;
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({event:'section_view', section:id});
-          }
-        });
-      }, {threshold: 0.4});
-      ['hero','modelos','prova-social','faq'].forEach(function(id){
-        var el = document.getElementById(id); if (el) obs.observe(el);
       });
 
       // Scroll depth
-      var fired25=false,fired50=false,fired75=false;
-      window.addEventListener('scroll', function(){
-        var h = document.documentElement.scrollHeight - window.innerHeight;
-        var y = window.scrollY;
-        var p = (y/h)*100;
-        window.dataLayer = window.dataLayer || [];
-        if(!fired25 && p>25){window.dataLayer.push({event:'scroll_depth',percent:25});fired25=true}
-        if(!fired50 && p>50){window.dataLayer.push({event:'scroll_depth',percent:50});fired50=true}
-        if(!fired75 && p>75){window.dataLayer.push({event:'scroll_depth',percent:75});fired75=true}
+      var f25=false,f50=false,f75=false;
+      window.addEventListener('scroll',function(){
+        var h=document.documentElement.scrollHeight-window.innerHeight;
+        var y=window.scrollY; var p=(y/h)*100; window.dataLayer=window.dataLayer||[];
+        if(!f25&&p>25){window.dataLayer.push({event:'scroll_depth',percent:25});f25=true}
+        if(!f50&&p>50){window.dataLayer.push({event:'scroll_depth',percent:50});f50=true}
+        if(!f75&&p>75){window.dataLayer.push({event:'scroll_depth',percent:75});f75=true}
       });
+
+      // Observer para revelar a seção 2
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
+      }, {threshold: 0.35});
+      document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
     })();
   </script>
 </body>
 </html>
+
