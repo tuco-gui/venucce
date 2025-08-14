@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8" />
@@ -207,30 +207,37 @@
     </div>
   </section>
 
-  <!-- Prova social com vídeos (substitua por embeds) -->
+  <!-- Prova social com vídeos (arquivos locais em /videos) -->
   <section id="prova-social" class="py-16">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Clientes satisfeitos</h2>
       <p class="text-white/70 mt-2">Assista depoimentos reais de quem já comprou seu Mac na Venucce.</p>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <!-- Suba seus vídeos .mp4 na pasta /videos com estes nomes ou ajuste os nomes abaixo -->
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-          <div class="aspect-video bg-black/60 flex items-center justify-center">
-            <!-- EMBED do vídeo 1 (YouTube/Cloud) -->
-            <span class="text-white/60">Vídeo 1 – placeholder</span>
+          <div class="aspect-video bg-black/60">
+            <video controls preload="metadata" class="w-full h-full">
+              <source src="/videos/depo1.mp4" type="video/mp4" />
+              Seu navegador não suporta vídeo HTML5.
+            </video>
           </div>
           <div class="p-4"><div class="text-sm text-white/70">Natália – Águas Claras</div><div class="text-white mt-1">“Fechei o MacBook M3 em 18x. Atendimento incrível!”</div></div>
         </div>
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-          <div class="aspect-video bg-black/60 flex items-center justify-center">
-            <!-- EMBED do vídeo 2 -->
-            <span class="text-white/60">Vídeo 2 – placeholder</span>
+          <div class="aspect-video bg-black/60">
+            <video controls preload="metadata" class="w-full h-full">
+              <source src="/videos/depo2.mp4" type="video/mp4" />
+              Seu navegador não suporta vídeo HTML5.
+            </video>
           </div>
           <div class="p-4"><div class="text-sm text-white/70">Carlos – Brasília</div><div class="text-white mt-1">“Produto original, entrega rápida e preço justo.”</div></div>
         </div>
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
-          <div class="aspect-video bg-black/60 flex items-center justify-center">
-            <!-- EMBED do vídeo 3 -->
-            <span class="text-white/60">Vídeo 3 – placeholder</span>
+          <div class="aspect-video bg-black/60">
+            <video controls preload="metadata" class="w-full h-full">
+              <source src="/videos/depo3.mp4" type="video/mp4" />
+              Seu navegador não suporta vídeo HTML5.
+            </video>
           </div>
           <div class="p-4"><div class="text-sm text-white/70">Victor – Lago Norte</div><div class="text-white mt-1">“Atendimento consultivo e transparente. Recomendo!”</div></div>
         </div>
@@ -351,3 +358,4 @@
   </script>
 </body>
 </html>
+
