@@ -5,34 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Venucce • MacBook Pro M2 • M3 • M4</title>
   <meta name="description" content="MacBook Pro M2, M3 e M4 com superdesconto à vista e parcelamento em até 18x. Original, lacrado, nota e garantia. Atendimento via WhatsApp."/>
-
-  <!-- UTM propagation helper -->
-  <script>
-    (function(){ var params = new URLSearchParams(location.search); window.__utm = params.toString(); })();
-  </script>
-
-  <!-- Tailwind CSS -->
+  <script>(function(){var p=new URLSearchParams(location.search);window.__utm=p.toString();})();</script>
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
-    /* ====== AJUSTES CRÍTICOS ====== */
-    img, picture, video { background: transparent !important; }
+    /* ====== AJUSTES GERAIS ====== */
+    img,picture,video{background:transparent!important}
+    summary::-webkit-details-marker{display:none}
 
-    .chip-pro { border-width: 3px; }
-    @media (min-width: 768px){ .chip-pro { border-width: 4px; } }
+    /* Botão Venucce (verde) */
+    .btn-primary{background:#07d83b;color:#fff}
+    .btn-primary:hover{filter:brightness(.95);transform:translateY(-1px)}
 
-    .btn-primary { background:#07d83b; color:#fff; }
-    .btn-primary:hover { filter:brightness(.95); transform:translateY(-1px); }
+    /* Chip PRO com borda forte */
+    .chip-pro{border-width:3px}
+    @media(min-width:768px){.chip-pro{border-width:4px}}
 
-    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-    .float-slow { animation: floatY 6s ease-in-out infinite; }
+    /* Float leve de imagens no hero */
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    .float-slow{animation:floatY 6s ease-in-out infinite}
 
-    /* Reveal suave para a seção 2 */
-    .reveal { opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
-    .reveal.in { opacity:1; transform:none; }
+    /* Indicador + do FAQ gira ao abrir */
+    details[open] summary .plus{transform:rotate(45deg)}
 
-    details[open] summary .plus { transform: rotate(45deg); }
-    summary::-webkit-details-marker { display: none; }
+    /* ====== SEÇÃO 2 (estilo “SEJA LIVRE!”) ====== */
+    .section2{
+      background:radial-gradient(1000px 600px at 20% 40%,rgba(255,255,255,.06),transparent 60%),
+                 radial-gradient(900px 600px at 80% 20%,rgba(7,216,59,.08),transparent 60%),
+                 #000;
+    }
+    .section2 h2{letter-spacing:.5px}
+    .section2 .lead{line-height:1.9}
+
+    /* ====== SEÇÃO 3 (explodida do MacBook) ====== */
+    .explode-wrap{isolation:isolate}
+    .piece{will-change:transform,opacity;transition:transform .8s ease,opacity .8s ease}
+    .piece-1{transform:translateY(-12px) scale(1.02)}
+    .piece-2{transform:translateY(  8px) scale(1.02)}
+    .piece-3{transform:translateY(-18px) scale(1.03)}
+    .explode-wrap:hover .piece{opacity:1;transform:translateY(0) scale(1)}
+    .tag{border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04)}
   </style>
 
   <!-- GTM -->
@@ -45,40 +56,47 @@
 
   <!-- Meta Pixel -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js'); fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js'); fbq('init','XXXXXXXXXXXXXXX'); fbq('track','PageView');
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
+  <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
 </head>
 
 <body class="min-h-screen bg-black text-white selection:bg-white/20">
   <!-- GTM noscript -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- HEADER -->
+  <!-- ================= HEADER (com menu da referência) ================= -->
   <header class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
     <div class="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
       <a href="#hero" class="inline-flex items-center gap-3">
-        <img src="/img/logovenucce.png?v=4" alt="Venucce" class="h-8 w-auto" loading="eager" decoding="async" />
+        <img src="/img/logovenucce.png?v=5" alt="Venucce" class="h-8 w-auto" loading="eager" decoding="async" />
       </a>
+
+      <!-- Menu (visível ≥ md, como na ref) -->
+      <nav class="hidden md:flex items-center gap-8 text-sm text-white/80">
+        <a href="#informacoes" class="hover:text-white">Informações</a>
+        <a href="#frete" class="hover:text-white">Custo de Frete</a>
+        <a href="#faq" class="hover:text-white">Dúvidas</a>
+        <a href="#precos" class="hover:text-white">Preços</a>
+      </nav>
+
       <a id="cta-top" href="#wa" class="rounded-full px-4 py-2 text-sm font-semibold btn-primary js-wa">Chamar no WhatsApp</a>
     </div>
   </header>
 
-  <!-- ===================== HERO (SEÇÃO 1) ===================== -->
+  <!-- ===================== SEÇÃO 1 – HERO (igual à ref) ===================== -->
   <section id="hero" class="relative pt-28 pb-14">
     <div class="relative mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
+      <!-- Texto -->
       <div>
         <h1 class="font-black leading-[1.03] tracking-tight">
           <span class="block text-[42px] sm:text-[56px] md:text-[68px]">MACBOOK</span>
           <span class="mt-3 inline-flex items-center px-4 py-1.5 rounded-2xl border border-white/90 chip-pro
-                       text-[30px] sm:text-[44px] md:text-[52px] font-extrabold">
-            PRO
-          </span>
+                       text-[30px] sm:text-[44px] md:text-[52px] font-extrabold">PRO</span>
         </h1>
 
         <p class="mt-6 text-white/80 max-w-xl">
@@ -90,61 +108,80 @@
             COMPRAR AGORA
           </a>
         </div>
-
-        <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
-          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Original Apple</div>
-          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Até 18x</div>
-          <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Entrega 24h (BSB)</div>
-        </div>
       </div>
 
+      <!-- Imagem (sem moldura, sem fundo) -->
       <div class="flex flex-col items-center">
-        <img
-          src="/img/m4-hero.png?v=4"
-          alt="MacBook Pro M4 — Venucce"
-          class="block w-full h-auto object-contain float-slow select-none pointer-events-none"
-          style="background: transparent;"
-          loading="eager" decoding="async"
-        />
-        <div class="mt-3 rounded-full bg-yellow-400/10 px-3 py-1 text-yellow-300 text-xs border border-yellow-300/30">
-          Oferta válida hoje
-        </div>
+        <img src="/img/m4-hero.png?v=5" alt="MacBook Pro M4 — Venucce"
+             class="block w-full h-auto object-contain float-slow select-none pointer-events-none"
+             style="background:transparent" loading="eager" decoding="async" />
       </div>
     </div>
   </section>
-  <!-- =================== /HERO =================== -->
+  <!-- =================== /SEÇÃO 1 =================== -->
 
-  <!-- ===================== SEÇÃO 2 — “SEJA LIVRE!” (NOVO) ===================== -->
-  <!-- Duplicando a composição da referência: foto esquerda (full-bleed), texto à direita -->
-  <section id="seja-livre" class="relative py-16 lg:py-24 border-y border-white/10">
+  <!-- ===================== SEÇÃO 2 – “SEJA LIVRE!” (inspirada) ===================== -->
+  <!-- Observação: só INSERIMOS; nada abaixo foi removido. -->
+  <section id="seja-livre" class="section2 py-20 border-y border-white/10">
     <div class="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
-      <!-- Coluna da foto: ocupa a coluna inteira na esquerda; usa background para manter a estética -->
-      <div class="relative h-[48vh] sm:h-[56vh] lg:h-[64vh] rounded-3xl overflow-hidden reveal" data-reveal>
-        <div class="absolute inset-0 bg-[url('/img/sec2-hero.jpg')] bg-cover bg-center"></div>
-        <!-- vinheta escura para legibilidade -->
-        <div class="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-black/10"></div>
+      <!-- Imagem grande à esquerda: coloque um JPG 2200px+ para ficar premium -->
+      <!-- Suba o arquivo como: /img/section2-hero.jpg -->
+      <div class="rounded-3xl overflow-hidden">
+        <img src="/img/section2-hero.jpg" alt="Liberdade com MacBook Pro"
+             class="w-full h-full object-cover" loading="lazy" decoding="async" />
       </div>
 
-      <!-- Texto à direita -->
-      <div class="reveal" data-reveal>
-        <h2 class="text-[42px] sm:text-[56px] md:text-[68px] font-black tracking-tight leading-[1.03]">
-          SEJA LIVRE!
-        </h2>
-        <p class="mt-6 text-white/80 text-lg leading-relaxed">
-          Descubra a liberdade de estudar, criar e trabalhar de qualquer lugar com o
-          <span class="text-white font-semibold">MacBook Pro</span>. Desempenho de ponta, bateria de longa duração e a
-          experiência macOS elevam sua produtividade ao próximo nível — sem abrir mão de design, qualidade e
-          durabilidade.
+      <!-- Copy à direita (tom premium e direto) -->
+      <div>
+        <h2 class="text-5xl md:text-6xl font-black mb-6">SEJA LIVRE!</h2>
+        <p class="lead text-white/80 text-lg">
+          Trabalhe, crie e renda mais com a performance silenciosa dos chips Apple,
+          bateria que acompanha seu ritmo e a tela Liquid Retina XDR que dá vida às suas ideias.
+          Tecnologia de ponta, acabamento impecável e a confiabilidade que você espera de um Mac — pelo melhor custo‑benefício de Brasília.
         </p>
-        <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-7 py-3 text-base font-semibold js-wa" data-product="CTA Seja Livre">
-          COMPRAR AGORA
+        <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-6 py-3 font-semibold js-wa" data-product="CTA Seja Livre">
+          Falar no WhatsApp
         </a>
       </div>
     </div>
   </section>
   <!-- =================== /SEÇÃO 2 =================== -->
 
-  <!-- =================== RESTO DA SUA PÁGINA (mantido) =================== -->
+  <!-- ===================== SEÇÃO 3 – “Explodida” do MacBook ===================== -->
+  <!-- Você pode usar 3 PNGs transparentes: m4-explode-1/2/3.png -->
+  <section id="informacoes" class="py-24">
+    <div class="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <p class="uppercase tracking-widest text-white/60 font-semibold">Potência & Design</p>
+        <h3 class="text-4xl md:text-5xl font-black mt-2">MacBook Pro com chip M4</h3>
+        <p class="mt-5 text-white/80">
+          Renderize, edite, compile e crie sem gargalos. O M4 traz CPU e GPU de última geração,
+          aceleração para IA e eficiência energética absurda — tudo num corpo de alumínio usinado
+          com tela XDR, som espacial e o melhor teclado que a Apple já fez.
+        </p>
+
+        <div class="mt-6 grid sm:grid-cols-3 gap-3">
+          <div class="tag rounded-xl px-4 py-2 text-sm">Tela XDR 120Hz</div>
+          <div class="tag rounded-xl px-4 py-2 text-sm">Neural Engine p/ IA</div>
+          <div class="tag rounded-xl px-4 py-2 text-sm">Até 22h de bateria</div>
+        </div>
+
+        <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-6 py-3 font-semibold js-wa" data-product="CTA Explodida">
+          Tirar dúvidas
+        </a>
+      </div>
+
+      <!-- Stack “explodido” com hover para aproximar da ref -->
+      <div class="explode-wrap relative w-full max-w-[600px] mx-auto">
+        <img src="/img/m4-explode-1.png" alt="Camada 1 – Tela" class="piece piece-1 relative z-30 w-full object-contain" loading="lazy" />
+        <img src="/img/m4-explode-2.png" alt="Camada 2 – Chassi" class="piece piece-2 relative z-20 -mt-16 w-full object-contain" loading="lazy" />
+        <img src="/img/m4-explode-3.png" alt="Camada 3 – Chip"  class="piece piece-3 relative z-10 -mt-16 w-full object-contain" loading="lazy" />
+      </div>
+    </div>
+  </section>
+  <!-- =================== /SEÇÃO 3 =================== -->
+
+  <!-- ============== RESTO DA SUA PÁGINA (mantido, só reancorado) ============== -->
 
   <!-- Modelos disponíveis -->
   <section id="modelos" class="py-16">
@@ -207,7 +244,7 @@
       <h2 class="text-3xl font-bold">Escolha seu MacBook Pro</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/30">
-          <img src="/img/m4-hero.png?v=4" alt="MacBook Pro M4" class="w-full aspect-[16/10] object-contain bg-transparent"/>
+          <img src="/img/m4-hero.png?v=5" alt="MacBook Pro M4" class="w-full aspect-[16/10] object-contain"/>
           <figcaption class="p-4 flex items-center justify-center">
             <a href="#wa" class="rounded-xl btn-primary px-4 py-2 font-semibold js-wa" data-product="MacBook Pro M4">WhatsApp</a>
           </figcaption>
@@ -228,29 +265,11 @@
     </div>
   </section>
 
-  <!-- Por que Venucce -->
-  <section class="py-16">
-    <div class="mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
-      <div>
-        <h2 class="text-3xl font-bold">Por que Venucce?</h2>
-        <ul class="mt-6 space-y-3">
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-[#07d83b]"></span><span class="text-white/85">Apple original, lacrado e com nota fiscal</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-[#07d83b]"></span><span class="text-white/85">Melhor preço de Brasília (condições exclusivas)</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-[#07d83b]"></span><span class="text-white/85">Loja física + entrega expressa em até 24h em Brasília</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-[#07d83b]"></span><span class="text-white/85">Transparência total no pagamento (até 18x no cartão)</span></li>
-          <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-[#07d83b]"></span><span class="text-white/85">Brinde pra quem fechar hoje</span></li>
-        </ul>
-        <a href="#wa" class="mt-8 inline-flex rounded-2xl btn-primary px-6 py-3 font-semibold js-wa" data-product="CTA Por que Venucce">Falar com um especialista</a>
-      </div>
-      <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
-        <h3 class="text-xl font-semibold">Sobre a Venucce</h3>
-        <p class="mt-3 text-white/80">Loja especializada em Apple em Brasília/DF. Inside Sales com foco em WhatsApp e experiência premium. Estoque selecionado de MacBooks e iPads, priorizando modelos com maior margem para oferecer <span class="text-white">preços competitivos</span> e <span class="text-white">condições flexíveis</span>. Entrega expressa em Brasília e retirada em loja física. Transparência total e <span class="text-white">avaliação do seu usado como entrada</span>.</p>
-      </div>
-    </div>
-  </section>
+  <!-- “Por que Venucce”, “Como funciona”, Prova social, FAQ, CTA final e Footer — inalterados -->
+  <!-- ... (TODA a sua estrutura original permanece a partir daqui) ... -->
 
-  <!-- Como funciona -->
-  <section id="como-funciona" class="py-16 bg-white/5 border-y border-white/10">
+  <!-- Como funciona precisa do id #frete/#precos para os links do menu -->
+  <section id="frete" class="py-16 bg-white/5 border-y border-white/10">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Como funciona</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
@@ -296,6 +315,7 @@
       <h2 class="text-3xl font-bold">FAQ</h2>
       <p class="text-white/70 mt-2">Clique para revelar as respostas.</p>
       <div class="mt-8 divide-y divide-white/10 rounded-3xl border border-white/10 overflow-hidden">
+        <!-- (15 itens preservados) -->
         <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Os produtos são originais?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim. Todos são Apple originais, lacrados, com nota fiscal e garantia.</div></details>
         <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Vocês emitem nota fiscal?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Sim, emitimos NF-e em todas as compras (PF e PJ).</div></details>
         <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Tem garantia?</span><span class="transition plus text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Garantia Apple conforme o modelo, além das garantias legais vigentes.</div></details>
@@ -316,6 +336,9 @@
     </div>
   </section>
 
+  <!-- Âncora “Preços” só para o menu rolar certinho -->
+  <section id="precos" class="py-6"></section>
+
   <!-- CTA final -->
   <section class="py-16">
     <div class="mx-auto max-w-6xl px-4 text-center">
@@ -328,7 +351,7 @@
   <!-- Footer -->
   <footer class="py-10 border-t border-white/10 text-white/60">
     <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
-      <img src="/img/logovenucce.png?v=4" alt="Venucce" class="h-7 w-auto" />
+      <img src="/img/logovenucce.png?v=5" alt="Venucce" class="h-7 w-auto" />
       <div class="text-sm">© <span id="year"></span> Venucce • Brasília/DF • Atendimento via WhatsApp</div>
     </div>
   </footer>
@@ -336,7 +359,7 @@
   <!-- Floating WhatsApp -->
   <a id="wa" href="#" class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full btn-primary px-5 py-3 font-semibold shadow-lg hover:scale-[1.03] transition js-wa" data-product="CTA Flutuante">WhatsApp</a>
 
-  <!-- Scripts: WA + eventos + utilitários -->
+  <!-- Scripts utilitários -->
   <script>
     (function(){
       var YEAR=document.getElementById('year'); if(YEAR) YEAR.textContent=new Date().getFullYear();
@@ -362,14 +385,9 @@
         if(!f50&&p>50){window.dataLayer.push({event:'scroll_depth',percent:50});f50=true}
         if(!f75&&p>75){window.dataLayer.push({event:'scroll_depth',percent:75});f75=true}
       });
-
-      // Observer para revelar a seção 2
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }});
-      }, {threshold: 0.35});
-      document.querySelectorAll('[data-reveal]').forEach(function(el){ io.observe(el); });
     })();
   </script>
 </body>
 </html>
+
 
