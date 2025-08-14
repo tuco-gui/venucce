@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Venucce • MacBook  Pro </title>
+  <title>Venucce • MacBook Pro M2 • M3 • M4</title>
   <meta name="description" content="MacBook Pro M2, M3 e M4 com superdesconto à vista e parcelamento em até 18x. Original, lacrado, nota e garantia. Atendimento via WhatsApp."/>
+
   <!-- UTM propagation helper -->
   <script>
     (function(){
@@ -12,19 +13,30 @@
       window.__utm = params.toString();
     })();
   </script>
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* ajustes finos */
+    /* ===== util ===== */
     summary::-webkit-details-marker{display:none}
     .btn-primary{background:#07d83b;color:#fff}
-    .btn-primary:hover{filter:brightness(0.95);transform:translateY(-1px)}
+    .btn-primary:hover{filter:brightness(.95);transform:translateY(-1px)}
     .btn-outline{border-color:#2a2a2a}
     .shadow-soft{box-shadow:0 10px 40px rgba(0,0,0,.35)}
-    .floating{animation:float 6s ease-in-out infinite}
-    @keyframes float {0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
-    .fade-up{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
-    .fade-up.is-in{opacity:1;transform:translateY(0)}
+    /* ===== animações tipo ref ===== */
+    .fade-up{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+    .fade-up.in{opacity:1;transform:translateY(0)}
+    .fade-left{opacity:0;transform:translateX(24px);transition:opacity .7s ease,transform .7s ease}
+    .fade-left.in{opacity:1;transform:translateX(0)}
+    @keyframes gentleFloat {0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .float{animation:gentleFloat 6s ease-in-out infinite}
+    /* reforço da borda do "PRO" */
+    .pro-badge{border-width:2.5px}
+    /* vinheta suave do fundo do hero (parecido com a ref) */
+    .hero-bg{background:
+      radial-gradient(1100px 520px at -10% -10%, rgba(255,255,255,.06), transparent 60%),
+      radial-gradient(600px 300px at 110% 10%, rgba(7,216,59,.12), transparent 60%)
+    }
   </style>
 
   <!-- Google Tag Manager -->
@@ -39,13 +51,10 @@
 
   <!-- Meta Pixel -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', 'XXXXXXXXXXXXXXX'); fbq('track', 'PageView');
   </script>
@@ -56,14 +65,14 @@
   <!-- GTM noscript -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-  <!-- ====== NAV (igual ao ref: logo à esquerda, links à direita, botão contato) -->
+  <!-- ================= NAV (mesmo padrão da ref) ================= -->
   <header class="fixed top-0 inset-x-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
     <div class="mx-auto max-w-6xl px-4 h-16 flex items-center justify-between">
-      <!-- LOGO: apenas imagem -->
+      <!-- LOGO: só imagem -->
       <a href="#hero" class="inline-flex items-center gap-3">
         <img src="/venucce/img/logovenucce.png" alt="Venucce" class="h-8 w-auto" loading="eager" />
       </a>
-      <!-- Nav -->
+      <!-- Nav simples -->
       <nav class="hidden md:flex items-center gap-6 text-sm text-white/80">
         <a href="#info" class="hover:text-white">Informações</a>
         <a href="#frete" class="hover:text-white">Custo de Frete</a>
@@ -74,33 +83,32 @@
     </div>
   </header>
 
-  <!-- ====== HERO (seção 1) — visual idêntico ao ref, com nosso conteúdo -->
-  <section id="hero" class="relative pt-28 pb-16 overflow-hidden">
-    <!-- fundo leve com vinheta/gradientes -->
-    <div class="pointer-events-none absolute inset-0"
-         style="background:radial-gradient(1200px 600px at -10% -10%,rgba(255,255,255,.06),transparent 60%),radial-gradient(600px 300px at 110% 10%,rgba(7,216,59,.12),transparent 60%);"></div>
+  <!-- ================= HERO (SEÇÃO 1) — igual à ref com suas mudanças ================= -->
+  <section id="hero" class="relative pt-28 pb-12 overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 hero-bg"></div>
 
-    <div class="relative mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
-      <!-- Texto (lado esquerdo) -->
+    <div class="relative mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <!-- LADO ESQUERDO (título + texto + CTA) -->
       <div class="fade-up" data-obs>
-        <!-- Headline em blocos como a referência -->
-        <h1 class="font-black leading-[1.05] tracking-tight">
+        <!-- Headline em duas linhas (MACBOOK / PRO dentro do quadrado forte) -->
+        <h1 class="font-black leading-[1.03] tracking-tight">
           <span class="block text-[40px] sm:text-[56px] md:text-[68px]">MACBOOK</span>
-          <span class="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-2xl border border-white/15 text-[30px] sm:text-[44px] md:text-[52px] font-extrabold">PRO</span>
+          <span class="mt-3 inline-flex items-center px-4 py-1.5 rounded-2xl border border-white/80 pro-badge text-[30px] sm:text-[44px] md:text-[52px] font-extrabold">
+            PRO
+          </span>
         </h1>
 
-        <!-- Texto -->
+        <!-- Sub -->
         <p class="mt-6 text-white/80 max-w-xl">
           M4, M3 e M2 com superdesconto à vista e parcelamento em até 18x. Lacrado, original, com nota e garantia.
         </p>
 
-        <!-- CTAs centralizados em mobile e alinhados ao layout -->
-        <div class="mt-8 flex flex-col sm:flex-row items-center sm:items-stretch gap-3">
-          <a id="cta-hero" href="#wa" class="btn-primary rounded-2xl px-6 py-3 text-base font-semibold w-full sm:w-auto text-center js-wa">QUERO O MEU MACBOOK AGORA</a>
-          <a href="#modelos" class="rounded-2xl border btn-outline px-6 py-3 text-base font-semibold w-full sm:w-auto text-center">Ver modelos</a>
+        <!-- CTA ÚNICO: COMPRAR AGORA -->
+        <div class="mt-8 w-full sm:w-auto">
+          <a id="cta-hero" href="#wa" class="btn-primary rounded-2xl px-7 py-3 text-base font-semibold inline-flex items-center justify-center js-wa">COMPRAR AGORA</a>
         </div>
 
-        <!-- Badges -->
+        <!-- badges -->
         <div class="mt-6 flex flex-wrap items-center gap-4 text-sm text-white/70">
           <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Original Apple</div>
           <div class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-green-400"></span> Até 18x</div>
@@ -108,20 +116,23 @@
         </div>
       </div>
 
-      <!-- Imagem (lado direito) -->
-      <div class="fade-up" data-obs>
-        <div class="relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 to-transparent shadow-soft overflow-hidden">
-          <div class="p-3 sm:p-6">
-            <!-- Use PNG com fundo transparente se tiver; mantém nome atual como fallback -->
+      <!-- LADO DIREITO (imagem do MacBook sem moldura, fundo transparente) -->
+      <div class="fade-left" data-obs>
+        <!-- SEM caixa/sem borda. Apenas a imagem flutuando como na ref -->
+        <div class="relative">
+          <picture>
+            <!-- Use o PNG transparente se você subir (mesmo nome) -->
+            <source srcset="/img/m4-hero.png" type="image/png">
+            <!-- Fallback para o JPG que você já tem -->
             <img
-              src="/img/m3-hero.jpg"
-              alt="MacBook Pro – Venucce"
-              class="w-full h-auto floating"
+              src="/img/m4-hero.jpg"
+              alt="MacBook Pro M4 — Venucce"
+              class="w-full h-auto float"
               loading="eager"
             />
-          </div>
+          </picture>
         </div>
-        <!-- Selo “Oferta válida hoje” centralizado -->
+        <!-- selo centralizado embaixo (opcional, mantém da versão anterior) -->
         <div class="mt-3 w-full flex justify-center">
           <div class="rounded-full bg-white/5 border border-white/10 px-3 py-1 text-yellow-300 text-xs">Oferta válida hoje</div>
         </div>
@@ -129,13 +140,13 @@
     </div>
   </section>
 
-  <!-- ====== MODELOS (mantido, com botões centralizados) -->
+  <!-- ======= RESTANTE DA PÁGINA (sem mudanças estruturais) ======= -->
+
   <section id="modelos" class="py-16">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Modelos disponíveis</h2>
       <p class="text-white/70 mt-2">Todos novos, lacrados, originais e prontos pra entrega.</p>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <!-- M4 -->
         <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
           <img src="/img/m4-14.jpg" alt="MacBook Pro M4 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
           <h3 class="mt-4 text-xl font-semibold text-center">MacBook Pro M4 14"</h3>
@@ -150,7 +161,6 @@
             <a href="#wa" class="inline-flex rounded-xl px-5 py-2 font-semibold btn-primary js-wa" data-product="MacBook Pro M4 14">Chamar no WhatsApp</a>
           </div>
         </article>
-        <!-- M3 Pro -->
         <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
           <img src="/img/m3pro-16.jpg" alt="MacBook Pro M3 Pro 16 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
           <h3 class="mt-4 text-xl font-semibold text-center">MacBook Pro M3 Pro 16"</h3>
@@ -165,7 +175,6 @@
             <a href="#wa" class="inline-flex rounded-xl px-5 py-2 font-semibold btn-primary js-wa" data-product="MacBook Pro M3 Pro 16">Chamar no WhatsApp</a>
           </div>
         </article>
-        <!-- M2 Pro -->
         <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
           <img src="/img/m2pro-14.jpg" alt="MacBook Pro M2 Pro 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
           <h3 class="mt-4 text-xl font-semibold text-center">MacBook Pro M2 Pro 14"</h3>
@@ -184,7 +193,6 @@
     </div>
   </section>
 
-  <!-- ====== “Escolha seu MacBook” (3 cards) com botões centralizados -->
   <section class="py-14 border-y border-white/10 bg-white/5">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Escolha seu MacBook Pro</h2>
@@ -214,7 +222,6 @@
     </div>
   </section>
 
-  <!-- ====== Por que Venucce / Como funciona -->
   <section id="info" class="py-14">
     <div class="mx-auto max-w-6xl px-4 grid md:grid-cols-4 gap-6">
       <div class="rounded-3xl border border-white/10 p-6 bg-black/40"><div class="text-3xl">💳</div><div class="mt-2 text-lg font-semibold">Até 18x no cartão</div><div class="text-white/75">Condições especiais no crédito.</div></div>
@@ -255,7 +262,6 @@
     </div>
   </section>
 
-  <!-- ====== Prova social vídeos -->
   <section id="prova-social" class="py-16">
     <div class="mx-auto max-w-6xl px-4">
       <h2 class="text-3xl font-bold">Clientes satisfeitos</h2>
@@ -293,7 +299,6 @@
     </div>
   </section>
 
-  <!-- ====== Preços (âncora simples) -->
   <section id="precos" class="py-16">
     <div class="mx-auto max-w-6xl px-4 text-center">
       <h2 class="text-3xl md:text-4xl font-bold">Original, garantido e com o melhor valor de Brasília.</h2>
@@ -302,7 +307,6 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="py-10 border-t border-white/10 text-white/60">
     <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
@@ -315,58 +319,48 @@
   <!-- Botão flutuante WhatsApp -->
   <a id="wa" href="#" class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold shadow-lg btn-primary hover:scale-[1.03] transition js-wa" data-product="CTA Flutuante">WhatsApp</a>
 
-  <!-- ====== Scripts utilitários: WhatsApp + métricas + animações -->
+  <!-- ===== Scripts: WhatsApp + métricas + animações ===== -->
   <script>
     (function(){
-      var YEAR = document.getElementById('year'); if (YEAR) YEAR.textContent = new Date().getFullYear();
+      var YEAR=document.getElementById('year'); if(YEAR) YEAR.textContent=new Date().getFullYear();
 
-      // DEFINA o número do WhatsApp no formato internacional
-      var WHATSAPP_NUMBER = '5561999999999'; // <-- TROCAR
-      var BASE_WA = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent('Olá, quero informações sobre o MacBook Pro (M2/M3/M4). Vim pela Landing Page.');
+      var WHATSAPP_NUMBER='5561999999999'; // <-- TROCAR
+      var BASE_WA='https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent('Olá, quero informações sobre o MacBook Pro (M2/M3/M4). Vim pela Landing Page.');
       function buildWaLink(extra){
-        var url = BASE_WA;
-        if (extra) url += encodeURIComponent(' | ' + extra);
-        if (window.__utm) url += '%0A%0AUTM=' + encodeURIComponent(window.__utm);
+        var url=BASE_WA;
+        if(extra) url+=encodeURIComponent(' | '+extra);
+        if(window.__utm) url+='%0A%0AUTM='+encodeURIComponent(window.__utm);
         return url;
       }
-
-      // Bind .js-wa
-      function bindWA(){
-        document.querySelectorAll('.js-wa').forEach(function(btn){
-          var product = btn.getAttribute('data-product') || 'generic';
-          var href = buildWaLink(product);
-          btn.setAttribute('href', href);
-          btn.addEventListener('click', function(){
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-              event: 'whatsapp_click',
-              product: product,
-              position_id: btn.id || 'no-id',
-              utm: window.__utm || ''
-            });
-            if (window.fbq) fbq('track', 'Contact', {content_name: product});
-          });
+      document.querySelectorAll('.js-wa').forEach(function(btn){
+        var product=btn.getAttribute('data-product')||'generic';
+        btn.setAttribute('href', buildWaLink(product));
+        btn.addEventListener('click', function(){
+          window.dataLayer=window.dataLayer||[];
+          window.dataLayer.push({event:'whatsapp_click',product:product,position_id:btn.id||'no-id',utm:window.__utm||''});
+          if(window.fbq) fbq('track','Contact',{content_name:product});
         });
-      }
-      bindWA();
+      });
 
-      // Observer para fade-up
-      var obs = new IntersectionObserver(function(entries){
+      // IntersectionObserver para as animações
+      var io=new IntersectionObserver(function(entries){
         entries.forEach(function(e){
-          if(e.isIntersecting){ e.target.classList.add('is-in'); obs.unobserve(e.target); }
+          if(e.isIntersecting){
+            e.target.classList.add('in');
+            io.unobserve(e.target);
+          }
         });
-      }, {threshold: 0.2});
-      document.querySelectorAll('[data-obs]').forEach(function(el){obs.observe(el)});
+      },{threshold:.2});
+      document.querySelectorAll('.fade-up,[data-obs].fade-left').forEach(function(el){io.observe(el)});
 
       // Scroll depth
-      var fired25=false,fired50=false,fired75=false;
-      window.addEventListener('scroll', function(){
-        var h = document.documentElement.scrollHeight - window.innerHeight;
-        var y = window.scrollY;
-        var p = (y/h)*100;
-        if(!fired25 && p>25){window.dataLayer.push({event:'scroll_depth',percent:25});fired25=true}
-        if(!fired50 && p>50){window.dataLayer.push({event:'scroll_depth',percent:50});fired50=true}
-        if(!fired75 && p>75){window.dataLayer.push({event:'scroll_depth',percent:75});fired75=true}
+      var f25=false,f50=false,f75=false;
+      window.addEventListener('scroll',function(){
+        var h=document.documentElement.scrollHeight-window.innerHeight;
+        var y=window.scrollY; var p=(y/h)*100;
+        if(!f25&&p>25){(window.dataLayer=window.dataLayer||[]).push({event:'scroll_depth',percent:25});f25=true}
+        if(!f50&&p>50){window.dataLayer.push({event:'scroll_depth',percent:50});f50=true}
+        if(!f75&&p>75){window.dataLayer.push({event:'scroll_depth',percent:75});f75=true}
       });
     })();
   </script>
