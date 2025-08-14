@@ -17,7 +17,7 @@
   <style>
     summary::-webkit-details-marker { display:none }
   </style>
-  
+
   <!-- Google Tag Manager -->
   <script>
     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -38,7 +38,7 @@
     t.src=v;s=b.getElementsByTagName(e)[0];
     s.parentNode.insertBefore(t,s)}(window, document,'script',
     'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', 'XXXXXXXXXXXXXXX'); /* troque pelo Pixel ID */
+    fbq('init', 'XXXXXXXXXXXXXXX'); // <-- substitua pelo Pixel ID da Venucce
     fbq('track', 'PageView');
   </script>
   <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=XXXXXXXXXXXXXXX&ev=PageView&noscript=1"/></noscript>
@@ -52,23 +52,23 @@
   <!-- Top bar -->
   <header class="fixed top-0 inset-x-0 z-40 border-b border-white/10 bg-black/70 backdrop-blur">
     <div class="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <!-- LOGO (arquivo em img/logovenucce.png) -->
-        <img src="img/logovenucce.png" alt="Venucce" class="h-8 w-auto object-contain" />
-      </div>
-      <a id="cta-top" href="#wa" class="inline-flex items-center gap-2 rounded-2xl bg-yellow-400 px-4 py-2 text-black font-semibold hover:scale-[1.02] transition js-wa">Chamar no WhatsApp</a>
+      <a href="#hero" class="flex items-center gap-3">
+        <!-- LOGO (sem texto ao lado) -->
+        <img src="/venucce/img/logovenucce.png" alt="Venucce Logo" class="h-8 w-auto">
+      </a>
+      <a id="cta-top" href="#wa" class="inline-flex items-center gap-2 rounded-2xl px-4 py-2 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white">Chamar no WhatsApp</a>
     </div>
   </header>
 
   <!-- Hero -->
   <section id="hero" class="relative pt-28 pb-20 overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(253,224,71,0.15),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.08),transparent_40%)]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(253,224,71,0.12),transparent_40%),radial-gradient(circle_at_80%_0%,rgba(255,255,255,0.06),transparent_40%)]"></div>
     <div class="relative mx-auto max-w-6xl px-4 grid lg:grid-cols-2 gap-10 items-center">
       <div>
         <h1 class="text-4xl md:text-5xl font-bold leading-tight">O MacBook Pro dos seus sonhos está mais perto do que você imagina.</h1>
         <p class="mt-4 text-lg text-white/80">M4, M3 e M2 com superdesconto à vista e parcelamento em até 18x.<br/>Lacrado, original, com nota e garantia.</p>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <a id="cta-hero" href="#wa" class="rounded-2xl bg-yellow-400 px-6 py-3 text-black font-semibold hover:scale-[1.02] transition js-wa">QUERO O MEU MACBOOK AGORA</a>
+        <div class="mt-8 flex flex-wrap gap-3 items-center">
+          <a id="cta-hero" href="#wa" class="rounded-2xl px-6 py-3 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white">QUERO O MEU MACBOOK AGORA</a>
           <a href="#modelos" class="rounded-2xl border border-white/20 px-6 py-3 font-semibold hover:bg-white/10 transition">Ver modelos</a>
         </div>
         <div class="mt-6 flex items-center gap-4 text-sm text-white/70">
@@ -79,10 +79,14 @@
       </div>
       <div class="relative">
         <div class="aspect-[16/10] rounded-3xl bg-gradient-to-br from-white/10 to-white/0 border border-white/10 shadow-2xl backdrop-blur-sm flex items-center justify-center overflow-hidden">
-          <!-- hero com imagem real (usei M4) -->
-          <img id="hero-img" src="img/m4-hero.jpg" alt="MacBook Pro – Venucce" class="w-full h-full object-cover" />
+          <!-- Usa PNG (transparente) se existir; cai para JPG se não -->
+          <picture class="w-full h-full">
+            <source srcset="/venucce/img/macbookpro-hero.png" type="image/png"/>
+            <img id="hero-img" src="/venucce/img/macbookpro-hero.jpg" alt="MacBook Pro – Venucce" class="w-full h-full object-cover" />
+          </picture>
         </div>
-        <div class="absolute -bottom-4 -left-4 rounded-xl bg-yellow-400/20 px-3 py-1 text-yellow-300 text-xs border border-yellow-300/30">Oferta válida hoje</div>
+        <!-- Selo centralizado -->
+        <div class="absolute left-1/2 -translate-x-1/2 -bottom-4 rounded-xl bg-yellow-400/20 px-3 py-1 text-yellow-300 text-xs border border-yellow-300/30">Oferta válida hoje</div>
       </div>
     </div>
   </section>
@@ -95,7 +99,10 @@
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <!-- M4 -->
         <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
-          <img src="img/m4-14.jpg" alt="MacBook Pro M4 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          <picture>
+            <source srcset="/venucce/img/m4-14.png" type="image/png"/>
+            <img src="/venucce/img/m4-14.jpg" alt="MacBook Pro M4 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          </picture>
           <h3 class="mt-4 text-xl font-semibold">MacBook Pro M4 14"</h3>
           <ul class="mt-3 text-white/80 space-y-1">
             <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-yellow-400"></span> 18GB</li>
@@ -104,11 +111,14 @@
           </ul>
           <div class="mt-4 text-yellow-300 font-semibold">R$ 4.750 à vista*</div>
           <div class="mt-1 text-sm text-white/70">Novo, lacrado, nota e garantia</div>
-          <a href="#wa" class="mt-6 inline-flex rounded-xl bg-yellow-400 px-4 py-2 text-black font-semibold hover:scale-[1.02] transition js-wa" data-product="MacBook Pro M4 14">Chamar no WhatsApp</a>
+          <a href="#wa" class="mt-6 inline-flex rounded-xl px-4 py-2 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white" data-product="MacBook Pro M4 14">Chamar no WhatsApp</a>
         </article>
         <!-- M3 Pro -->
         <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
-          <img src="img/m3pro-16.jpg" alt="MacBook Pro M3 Pro 16 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          <picture>
+            <source srcset="/venucce/img/m3pro-16.png" type="image/png"/>
+            <img src="/venucce/img/m3pro-16.jpg" alt="MacBook Pro M3 Pro 16 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          </picture>
           <h3 class="mt-4 text-xl font-semibold">MacBook Pro M3 Pro 16"</h3>
           <ul class="mt-3 text-white/80 space-y-1">
             <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-yellow-400"></span> 16GB</li>
@@ -117,11 +127,14 @@
           </ul>
           <div class="mt-4 text-yellow-300 font-semibold">Consulte condições</div>
           <div class="mt-1 text-sm text-white/70">Entrega expressa em Brasília</div>
-          <a href="#wa" class="mt-6 inline-flex rounded-xl bg-yellow-400 px-4 py-2 text-black font-semibold hover:scale-[1.02] transition js-wa" data-product="MacBook Pro M3 Pro 16">Chamar no WhatsApp</a>
+          <a href="#wa" class="mt-6 inline-flex rounded-xl px-4 py-2 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white" data-product="MacBook Pro M3 Pro 16">Chamar no WhatsApp</a>
         </article>
         <!-- M2 Pro -->
         <article class="rounded-3xl border border-white/10 p-6 bg-white/5 hover:bg-white/10 transition">
-          <img src="img/m2pro-14.jpg" alt="MacBook Pro M2 Pro 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          <picture>
+            <source srcset="/venucce/img/m2pro-14.png" type="image/png"/>
+            <img src="/venucce/img/m2pro-14.jpg" alt="MacBook Pro M2 Pro 14 polegadas" class="rounded-2xl w-full aspect-[4/3] object-cover" />
+          </picture>
           <h3 class="mt-4 text-xl font-semibold">MacBook Pro M2 Pro 14"</h3>
           <ul class="mt-3 text-white/80 space-y-1">
             <li class="flex items-center gap-2"><span class="h-1.5 w-1.5 rounded-full bg-yellow-400"></span> 16GB</li>
@@ -130,7 +143,7 @@
           </ul>
           <div class="mt-4 text-yellow-300 font-semibold">Consulte condições</div>
           <div class="mt-1 text-sm text-white/70">Avaliação do seu usado na hora</div>
-          <a href="#wa" class="mt-6 inline-flex rounded-xl bg-yellow-400 px-4 py-2 text-black font-semibold hover:scale-[1.02] transition js-wa" data-product="MacBook Pro M2 Pro 14">Chamar no WhatsApp</a>
+          <a href="#wa" class="mt-6 inline-flex rounded-xl px-4 py-2 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white" data-product="MacBook Pro M2 Pro 14">Chamar no WhatsApp</a>
         </article>
       </div>
     </div>
@@ -142,24 +155,33 @@
       <h2 class="text-3xl font-bold">Escolha seu MacBook Pro</h2>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
         <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/30">
-          <img src="img/m4-hero.jpg" alt="MacBook Pro M4" class="w-full aspect-[16/10] object-cover" />
+          <picture>
+            <source srcset="/venucce/img/m4-hero.png" type="image/png"/>
+            <img src="/venucce/img/m4-hero.jpg" alt="MacBook Pro M4" class="w-full aspect-[16/10] object-cover" />
+          </picture>
           <figcaption class="p-4 flex items-center justify-between">
             <span class="font-semibold">M4</span>
-            <a href="#wa" class="rounded-xl bg-yellow-400 px-4 py-2 text-black font-semibold js-wa" data-product="MacBook Pro M4">WhatsApp</a>
+            <a href="#wa" class="rounded-xl px-4 py-2 font-semibold js-wa bg-[#07d83b] text-white" data-product="MacBook Pro M4">WhatsApp</a>
           </figcaption>
         </figure>
         <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/30">
-          <img src="img/m3-hero.jpg" alt="MacBook Pro M3" class="w-full aspect-[16/10] object-cover" />
+          <picture>
+            <source srcset="/venucce/img/m3-hero.png" type="image/png"/>
+            <img src="/venucce/img/m3-hero.jpg" alt="MacBook Pro M3" class="w-full aspect-[16/10] object-cover" />
+          </picture>
           <figcaption class="p-4 flex items-center justify-between">
             <span class="font-semibold">M3</span>
-            <a href="#wa" class="rounded-xl bg-yellow-400 px-4 py-2 text-black font-semibold js-wa" data-product="MacBook Pro M3">WhatsApp</a>
+            <a href="#wa" class="rounded-xl px-4 py-2 font-semibold js-wa bg-[#07d83b] text-white" data-product="MacBook Pro M3">WhatsApp</a>
           </figcaption>
         </figure>
         <figure class="rounded-3xl overflow-hidden border border-white/10 bg-black/30">
-          <img src="img/m2-hero.jpg" alt="MacBook Pro M2" class="w-full aspect-[16/10] object-cover" />
+          <picture>
+            <source srcset="/venucce/img/m2-hero.png" type="image/png"/>
+            <img src="/venucce/img/m2-hero.jpg" alt="MacBook Pro M2" class="w-full aspect-[16/10] object-cover" />
+          </picture>
           <figcaption class="p-4 flex items-center justify-between">
             <span class="font-semibold">M2</span>
-            <a href="#wa" class="rounded-xl bg-yellow-400 px-4 py-2 text-black font-semibold js-wa" data-product="MacBook Pro M2">WhatsApp</a>
+            <a href="#wa" class="rounded-xl px-4 py-2 font-semibold js-wa bg-[#07d83b] text-white" data-product="MacBook Pro M2">WhatsApp</a>
           </figcaption>
         </figure>
       </div>
@@ -187,7 +209,7 @@
           <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-yellow-400"></span><span class="text-white/85">Transparência total no pagamento (até 18x no cartão)</span></li>
           <li class="flex items-start gap-3"><span class="mt-1 h-2 w-2 rounded-full bg-yellow-400"></span><span class="text-white/85">Brinde pra quem fechar hoje</span></li>
         </ul>
-        <a href="#wa" class="mt-8 inline-flex rounded-2xl bg-yellow-400 px-6 py-3 text-black font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA Por que Venucce">Falar com um especialista</a>
+        <a href="#wa" class="mt-8 inline-flex rounded-2xl px-6 py-3 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white" data-product="CTA Por que Venucce">Falar com um especialista</a>
       </div>
       <div class="rounded-3xl border border-white/10 bg-white/5 p-6">
         <h3 class="text-xl font-semibold">Sobre a Venucce</h3>
@@ -213,11 +235,10 @@
       <h2 class="text-3xl font-bold">Clientes satisfeitos</h2>
       <p class="text-white/70 mt-2">Assista depoimentos reais de quem já comprou seu Mac na Venucce.</p>
       <div class="mt-8 grid md:grid-cols-3 gap-6">
-        <!-- Suba vídeos .mp4 na pasta /videos com estes nomes ou ajuste no HTML -->
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
           <div class="aspect-video bg-black/60">
             <video controls preload="metadata" class="w-full h-full">
-              <source src="videos/depo1.mp4" type="video/mp4" />
+              <source src="/videos/depo1.mp4" type="video/mp4" />
               Seu navegador não suporta vídeo HTML5.
             </video>
           </div>
@@ -226,7 +247,7 @@
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
           <div class="aspect-video bg-black/60">
             <video controls preload="metadata" class="w-full h-full">
-              <source src="videos/depo2.mp4" type="video/mp4" />
+              <source src="/videos/depo2.mp4" type="video/mp4" />
               Seu navegador não suporta vídeo HTML5.
             </video>
           </div>
@@ -235,14 +256,14 @@
         <div class="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
           <div class="aspect-video bg-black/60">
             <video controls preload="metadata" class="w-full h-full">
-              <source src="videos/depo3.mp4" type="video/mp4" />
+              <source src="/videos/depo3.mp4" type="video/mp4" />
               Seu navegador não suporta vídeo HTML5.
             </video>
           </div>
           <div class="p-4"><div class="text-sm text-white/70">Victor – Lago Norte</div><div class="text-white mt-1">“Atendimento consultivo e transparente. Recomendo!”</div></div>
         </div>
       </div>
-      <a href="#wa" class="mt-8 inline-flex rounded-2xl bg-yellow-400 px-6 py-3 text-black font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA Prova Social">Tirar dúvidas no WhatsApp</a>
+      <a href="#wa" class="mt-8 inline-flex rounded-2xl px-6 py-3 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white" data-product="CTA Prova Social">Tirar dúvidas no WhatsApp</a>
     </div>
   </section>
 
@@ -268,7 +289,7 @@
         <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Vocês configuram o Mac?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Podemos auxiliar na configuração inicial básica. Consulte no atendimento.</div></details>
         <details class="group"><summary class="cursor-pointer list-none px-5 py-4 hover:bg-white/5 flex items-center justify-between"><span class="font-medium">Como falo com suporte?</span><span class="transition group-open:rotate-45 text-white/60">＋</span></summary><div class="px-5 pb-5 text-white/80">Atendimento via WhatsApp e na loja física, dentro do horário comercial.</div></details>
       </div>
-      <a href="#wa" class="mt-8 inline-flex rounded-2xl bg-yellow-400 px-6 py-3 text-black font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA FAQ">Falar com atendimento</a>
+      <a href="#wa" class="mt-8 inline-flex rounded-2xl px-6 py-3 font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white" data-product="CTA FAQ">Falar com atendimento</a>
     </div>
   </section>
 
@@ -277,7 +298,7 @@
     <div class="mx-auto max-w-6xl px-4 text-center">
       <h2 class="text-3xl md:text-4xl font-bold">Original, garantido e com o melhor valor de Brasília.</h2>
       <p class="text-white/80 mt-3">Brinde exclusivo pra quem fechar hoje. Estoque limitado.</p>
-      <a id="cta-final" href="#wa" class="mt-6 inline-flex rounded-2xl bg-yellow-400 px-8 py-4 text-black text-lg font-semibold hover:scale-[1.02] transition js-wa" data-product="CTA Final">CHAMAR NO WHATSAPP AGORA</a>
+      <a id="cta-final" href="#wa" class="mt-6 inline-flex rounded-2xl px-8 py-4 text-lg font-semibold hover:scale-[1.02] transition js-wa bg-[#07d83b] text-white" data-product="CTA Final">CHAMAR NO WHATSAPP AGORA</a>
     </div>
   </section>
 
@@ -285,15 +306,14 @@
   <footer class="py-10 border-t border-white/10 text-white/60">
     <div class="mx-auto max-w-6xl px-4 flex flex-col md:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
-        <!-- LOGO no rodapé -->
-        <img src="img/logovenucce.png" alt="Venucce" class="h-7 w-auto object-contain" />
+        <img src="/venucce/img/logovenucce.png" alt="Venucce Logo" class="h-7 w-auto">
       </div>
       <div class="text-sm">© <span id="year"></span> Venucce • Brasília/DF • Atendimento via WhatsApp</div>
     </div>
   </footer>
 
   <!-- Floating WhatsApp (âncora) -->
-  <a id="wa" href="#" class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full bg-green-500 px-5 py-3 text-white font-semibold shadow-lg hover:scale-[1.03] transition js-wa" data-product="CTA Flutuante">WhatsApp</a>
+  <a id="wa" href="#" class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full px-5 py-3 font-semibold shadow-lg hover:scale-[1.03] transition js-wa bg-[#07d83b] text-white" data-product="CTA Flutuante">WhatsApp</a>
 
   <!-- Scripts utilitários: WhatsApp link + UTM + Eventos (dataLayer + Meta Pixel) -->
   <script>
