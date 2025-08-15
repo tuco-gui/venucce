@@ -32,6 +32,24 @@ summary::-webkit-details-marker { display:none; }
   background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.28);
   transform: translateY(-1px);
 }
+/* Botão verde padrão (mesmo tom que combinamos) */
+.btn-primary { background:#07d83b; color:#fff; transition:transform .2s ease, filter .2s ease; }
+.btn-primary:hover { filter:brightness(.95); transform:translateY(-1px); }
+
+/* Animação de abertura da tampa */
+@keyframes lidOpen {
+  0%   { transform: rotateX(78deg); }
+  50%  { transform: rotateX(20deg); }
+  100% { transform: rotateX(0deg); }
+}
+
+/* Ao entrar em cena, reproduz a animação */
+#apple-hero-3d.inview #lid {
+  animation: lidOpen 1.6s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+/* Tilt/parallax suave da cena inteira */
+.mb-canvas:hover { transition: transform .15s ease; }
 
 /* Bullets verdes das listas */
 .bullet{ display:inline-block; width:6px; height:6px; border-radius:9999px; background:#07d83b; }
