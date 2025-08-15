@@ -1,0 +1,37 @@
+/* ====== AJUSTES GERAIS ====== */
+img, picture, video { background: transparent !important; display: block; }
+
+/* Botão verde padrão */
+.btn-primary {
+  background:#07d83b; color:#fff;
+  transition:filter .2s, transform .2s;
+}
+.btn-primary:hover { filter:brightness(.95); transform:translateY(-1px); }
+
+/* Chip “PRO” com borda forte */
+.chip-pro { border-width:3px; }
+@media (min-width:768px){ .chip-pro { border-width:4px; } }
+
+/* Micro-animação suave usada no hero */
+@keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.float-slow { animation: floatY 6s ease-in-out infinite; }
+
+/* FAQ: o “+” gira quando abre */
+details[open] summary .plus { transform: rotate(45deg); }
+/* Remove o marcador padrão do <summary> */
+summary::-webkit-details-marker { display:none; }
+
+/* Sub-menu do hero (chips) */
+.chip-link{
+  display:inline-block; padding:.5rem .9rem; border-radius:9999px;
+  border:1px solid rgba(255,255,255,.16); color:#fff;
+  background:rgba(255,255,255,.06);
+  transition: background .2s, border-color .2s, transform .2s;
+}
+.chip-link:hover{
+  background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.28);
+  transform: translateY(-1px);
+}
+
+/* Bullets verdes das listas */
+.bullet{ display:inline-block; width:6px; height:6px; border-radius:9999px; background:#07d83b; }
