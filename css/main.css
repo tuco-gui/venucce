@@ -18,10 +18,9 @@ img, picture, video { background: transparent !important; display: block; }
 
 /* FAQ: o “+” gira quando abre */
 details[open] summary .plus { transform: rotate(45deg); }
-/* Remove o marcador padrão do <summary> */
 summary::-webkit-details-marker { display:none; }
 
-/* Sub-menu do hero (chips) */
+/* Chips de links (se usados) */
 .chip-link{
   display:inline-block; padding:.5rem .9rem; border-radius:9999px;
   border:1px solid rgba(255,255,255,.16); color:#fff;
@@ -32,24 +31,37 @@ summary::-webkit-details-marker { display:none; }
   background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.28);
   transform: translateY(-1px);
 }
-/* Botão verde padrão (mesmo tom que combinamos) */
-.btn-primary { background:#07d83b; color:#fff; transition:transform .2s ease, filter .2s ease; }
-.btn-primary:hover { filter:brightness(.95); transform:translateY(-1px); }
 
-/* Animação de abertura da tampa */
+/* Bullets verdes das listas */
+.bullet{ display:inline-block; width:6px; height:6px; border-radius:9999px; background:#07d83b; }
+
+/* ====== SEÇÃO 3D ====== */
+.mac-hero{
+  width: min(100vw, 1200px);
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #0a0a0a;
+  border: 1px solid rgba(255,255,255,.10);
+}
+
+/* model-viewer grande e centralizado */
+model-viewer{
+  display:block;
+  width: 100%;
+  height: clamp(420px, 70vh, 780px);
+  background: #0a0a0a;
+  --poster-color: transparent; /* remove cinza do poster */
+}
+
+/* remove barra de progresso */
+model-viewer::part(default-progress-bar){ display:none; }
+
+/* ====== (opcional) animação se você usar tampa custom no futuro ====== */
 @keyframes lidOpen {
   0%   { transform: rotateX(78deg); }
   50%  { transform: rotateX(20deg); }
   100% { transform: rotateX(0deg); }
 }
-
-/* Ao entrar em cena, reproduz a animação */
-#apple-hero-3d.inview #lid {
-  animation: lidOpen 1.6s cubic-bezier(.22,.61,.36,1) forwards;
-}
-
-/* Tilt/parallax suave da cena inteira */
+#apple-hero-3d.inview #lid { animation: lidOpen 1.6s cubic-bezier(.22,.61,.36,1) forwards; }
 .mb-canvas:hover { transition: transform .15s ease; }
-
-/* Bullets verdes das listas */
-.bullet{ display:inline-block; width:6px; height:6px; border-radius:9999px; background:#07d83b; }
