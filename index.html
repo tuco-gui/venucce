@@ -14,6 +14,9 @@
   <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Model Viewer (para carregar o GLB direto, sem 'play') -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
   <!-- CSS do projeto -->
   <link rel="stylesheet" href="./css/main.css">
 
@@ -93,58 +96,38 @@
     </div>
   </section>
 
-  <!-- =============== SEÇÃO 3D (logo abaixo do hero) =============== -->
+  <!-- =============== SEÇÃO 3D (só 1 viewer grande) =============== -->
   <section id="viewer-3d" class="py-20 bg-black">
     <div class="mx-auto max-w-6xl px-4">
       <div class="text-center">
         <h2 class="text-3xl md:text-4xl font-bold">Veja em 3D</h2>
-        <p class="mt-2 text-white/70">Explore o MacBook Pro em 3D e escolha o tamanho ideal.</p>
+        <p class="mt-2 text-white/70">Gire, aproxime e veja de todos os ângulos.</p>
       </div>
 
-      <!-- Controles -->
-      <div class="mt-8 flex items-center justify-center gap-3">
-        <button class="size-toggle is-active" data-size="14">14″</button>
-        <button class="size-toggle" data-size="16">16″</button>
-      </div>
-
-      <!-- Viewer Wrapper -->
-      <div class="mt-6 rounded-3xl overflow-hidden border border-white/10 bg-black">
-        <!-- 14 polegadas -->
-        <div id="viewer14" class="viewer-iframe is-visible">
-          <div class="sketchfab-embed-wrapper">
-            <iframe
-              title="MacBook Pro 3D — 14″"
-              loading="lazy"
-              frameborder="0"
-              allow="autoplay; fullscreen; xr-spatial-tracking; gyroscope; accelerometer; magnetometer; gamepad"
-              allowfullscreen
-              src="https://macbook-pro-3d.vercel.app/">
-            </iframe>
-          </div>
-        </div>
-
-        <!-- 16 polegadas -->
-        <div id="viewer16" class="viewer-iframe">
-          <div class="sketchfab-embed-wrapper">
-            <iframe
-              title="MacBook Pro 3D — 16″"
-              loading="lazy"
-              frameborder="0"
-              allow="autoplay; fullscreen; xr-spatial-tracking; gyroscope; accelerometer; magnetometer; gamepad"
-              allowfullscreen
-              src="https://macbook-pro-3d.vercel.app/">
-            </iframe>
-          </div>
-        </div>
+      <div class="mt-6 mac-hero border border-white/10 rounded-3xl overflow-hidden">
+        <model-viewer
+          id="mac"
+          src="/assets/mac.glb"
+          camera-controls
+          autoplay
+          ar
+          interaction-prompt="none"
+          exposure="1.1"
+          shadow-intensity="1"
+          environment-image="/assets/studio.hdr"
+          poster="/img/m4-hero.png"
+          disable-zoom="false"
+          touch-action="pan-y">
+        </model-viewer>
       </div>
 
       <p class="mt-4 text-center text-white/60 text-sm">
-        <span id="viewerLabel">MacBook Pro 14″ — Space Black</span>
+        <span id="viewerLabel">MacBook Pro — Space Black</span>
       </p>
     </div>
   </section>
 
-  <!-- ========== AQUI seguem as SUAS seções existentes (sem cortar nada) ========== -->
+  <!-- ========== RESTANTE DA SUA PÁGINA (inalterado) ========== -->
 
   <!-- Modelos disponíveis -->
   <section id="modelos" class="py-16">
