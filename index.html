@@ -126,6 +126,54 @@
   <section id="informacoes" class="sr-only" aria-hidden="true"></section>
   <section id="frete" class="sr-only" aria-hidden="true"></section>
   <section id="precos" class="sr-only" aria-hidden="true"></section>
+<!-- ===================== SEÇÃO: MACBOOK ABRINDO (ESTILO APPLE) ===================== -->
+<section id="apple-hero-3d" class="relative overflow-hidden bg-black text-white">
+  <div class="mx-auto max-w-6xl px-4 py-20 grid lg:grid-cols-2 gap-10 items-center">
+
+    <!-- Lado Esquerdo: Copy Apple-like -->
+    <div class="space-y-6">
+      <h2 class="text-5xl md:text-6xl font-black leading-[1.05] tracking-tight">
+        MacBook Pro
+      </h2>
+      <p class="text-white/80 text-lg max-w-xl">
+        Performance absurda com os chips Apple M2, M3 e M4. Silencioso, rápido e com bateria pra um dia inteiro. 
+        Feito para quem cria, estuda e entrega no limite — sem travar a experiência.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href="#wa" class="btn-primary rounded-2xl px-7 py-3 font-semibold js-wa" data-product="Hero Apple 3D">
+          Comprar agora
+        </a>
+        <a href="#modelos" class="rounded-2xl border border-white/15 px-7 py-3 font-semibold hover:bg-white/5 transition">
+          Ver modelos
+        </a>
+      </div>
+      <ul class="mt-6 grid grid-cols-2 gap-4 text-white/80 text-sm">
+        <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span>Chips M2 · M3 · M4</li>
+        <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span>Tela Liquid Retina XDR</li>
+        <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span>Até 22h de bateria</li>
+        <li class="flex gap-2"><span class="mt-1 h-1.5 w-1.5 rounded-full bg-[#07d83b]"></span>Silencioso (sem cooler alto)</li>
+      </ul>
+    </div>
+
+    <!-- Lado Direito: Cena com a tampa abrindo -->
+    <div class="relative">
+      <div class="mb-canvas relative mx-auto w-full max-w-[620px] aspect-[16/10] select-none"
+           style="perspective: 1600px;">
+        <!-- BASE DO MACBOOK -->
+        <img src="/img/macbook-base.png" alt="MacBook Pro base"
+             class="absolute inset-0 w-full h-full object-contain pointer-events-none"
+             style="transform: translateZ(0px);" />
+
+        <!-- TAMPA/TELA (abre) -->
+        <img id="lid" src="/img/macbook-lid.png" alt="MacBook Pro tampa"
+             class="absolute inset-0 w-full h-full object-contain origin-[50%_90%] pointer-events-none"
+             style="transform: rotateX(78deg) translateZ(0px); transform-style: preserve-3d;" />
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ===================== /SEÇÃO MACBOOK ABRINDO ===================== -->
 
   <!-- =================== Modelos disponíveis (mantido) =================== -->
   <section id="modelos" class="py-16">
