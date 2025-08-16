@@ -11,14 +11,11 @@
     (function(){ var params = new URLSearchParams(location.search); window.__utm = params.toString(); })();
   </script>
 
-  <!-- Tailwind -->
+  <!-- Tailwind (mantido para o visual atual) -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Model Viewer -->
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
-  <!-- CSS do projeto -->
-  <link rel="stylesheet" href="./css/main.css">
+  <!-- CSS do projeto (separado) -->
+  <link rel="stylesheet" href="./main.css">
 
   <!-- GTM -->
   <script>
@@ -84,7 +81,7 @@
         </div>
       </div>
 
-      <!-- Imagem -->
+      <!-- Imagem (sem fundo, sem moldura) -->
       <div class="flex flex-col items-center">
         <img
           src="/img/m4-hero.png?v=4"
@@ -96,7 +93,7 @@
     </div>
   </section>
 
-  <!-- =============== SEÇÃO 3D (um viewer grande, central) =============== -->
+  <!-- =============== SEÇÃO 3D (via EMBED do seu projeto) =============== -->
   <section id="viewer-3d" class="py-20 bg-black">
     <div class="mx-auto max-w-6xl px-4">
       <div class="text-center">
@@ -104,29 +101,13 @@
         <p class="mt-2 text-white/70">Gire, aproxime e veja de todos os ângulos.</p>
       </div>
 
-      <div class="mt-6 mac-hero border border-white/10 rounded-3xl overflow-hidden">
-        <model-viewer
-          id="mac"
-          src="https://macbook-pro-3d.vercel.app/mac.glb"
-          camera-controls
-          auto-rotate
-          rotation-per-second="15deg"
-          interaction-prompt="none"
-          exposure="1.2"
-          shadow-intensity="1"
-          shadow-softness="1"
-          ar
-          disable-zoom="false"
-          touch-action="pan-y"
-          reveal="auto"
-          camera-orbit="-20deg 65deg 120%"
-          min-camera-orbit="-180deg 35deg 100%"
-          max-camera-orbit="180deg 85deg 180%"
-          field-of-view="35deg"
-          camera-target="0m 0m 0m"
-          environment-image="https://rawcdn.githack.com/pmndrs/drei-assets/master/hdri/studio_small_09_1k.hdr"
-          poster="/img/m4-hero.png">
-        </model-viewer>
+      <div class="mt-6 rounded-3xl overflow-hidden border border-white/10 bg-black">
+        <iframe
+          src="https://SEU-DOMINIO.vercel.app/embed.html"
+          title="MacBook Pro 3D"
+          allow="autoplay; fullscreen; xr-spatial-tracking"
+          style="width:100%;height:clamp(420px,70vh,780px);display:block;border:0;background:#000">
+        </iframe>
       </div>
 
       <p class="mt-4 text-center text-white/60 text-sm">
@@ -135,7 +116,7 @@
     </div>
   </section>
 
-  <!-- ========== RESTANTE DA SUA PÁGINA (inalterado) ========== -->
+  <!-- ========== AQUI seguem as SUAS seções existentes (sem cortar nada) ========== -->
 
   <!-- Modelos disponíveis -->
   <section id="modelos" class="py-16">
@@ -327,7 +308,8 @@
   <!-- Floating WhatsApp -->
   <a id="wa" href="#" class="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-full btn-primary px-5 py-3 font-semibold shadow-lg hover:scale-[1.03] transition js-wa" data-product="CTA Flutuante">WhatsApp</a>
 
-  <!-- JS do projeto -->
-  <script src="./js/main.js"></script>
+  <!-- JS do projeto (separado) -->
+  <script src="./main.js"></script>
 </body>
 </html>
+
